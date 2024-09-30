@@ -1,4 +1,10 @@
-FROM mysql:5.6
+FROM mysql:5.5
+
+RUN echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list
+
+RUN sed -i s/deb.debian.org/archive.debian.org/g /etc/apt/sources.list
+
+RUN sed -i 's/stable\/updates/stable-security\/updates/' /etc/apt/sources.list
 
 RUN apt-get update \
 	&& apt-get install -y wget unzip \
